@@ -15,10 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+ Route::middleware('check-permiso')->group(function(){
 
-Route::prefix('user')->group(function(){
-    Route::put('registrar', [userController::class, 'registrar']);
-});
+    Route::prefix('user')->group(function(){
+        Route::put('registrar', [userController::class, 'registrar']);
+        Route::put('login', [userController::class, 'login']);
+        Route::put('recuperarPassword', [userController::class, 'recuperarPassword']);
+        Route::put('lista', [userController::class, 'lista']);
+        Route::put('detalle', [userController::class, 'detalle']);
+        Route::put('perfil', [userController::class, 'perfil']);
+        Route::put('modificar', [userController::class, 'modificar']);
+
+    });
+ });
+
+
