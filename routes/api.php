@@ -16,14 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
  Route::middleware('check-permiso')->group(function(){
-
     Route::prefix('user')->group(function(){
         Route::put('registrar', [userController::class, 'registrar']);
-        Route::put('login', [userController::class, 'login']);
-        Route::put('recuperarPassword', [userController::class, 'recuperarPassword']);
+        Route::put('login', [userController::class, 'login'])->withoutMiddleware('check-permiso'); //sigue la funcion saltando el middleware
+        Route::put('recuperarPassword', [userController::class, 'recuperarPassword'])->withoutMiddleware('check-permiso');
         Route::put('lista', [userController::class, 'lista']);
         Route::put('detalle', [userController::class, 'detalle']);
-        Route::put('perfil', [userController::class, 'perfil']);
+        Route::put('perfil', [userController::class, 'perfil'])->withoutMiddleware('check-permiso');
         Route::put('modificar', [userController::class, 'modificar']);
 
     });
